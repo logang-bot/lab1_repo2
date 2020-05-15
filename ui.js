@@ -15,7 +15,7 @@ class Ui {
         this.manager =  new ProductsManagement();
         let p1 = new Products("Pollo", "Pollo Sofia", 20);
         let p2 = new Products("Galletas", "Galletas Mabel", 50);
-        let p3 = new Products("Pollo2", "Pollo Imba", 50);
+        let p3 = new Products("Pollo", "Pollo Imba", 50);
         this.p4 = new Products("","",0);
         this.manager.addProducts(p1);
         this.manager.addProducts(p2);
@@ -34,6 +34,10 @@ class Ui {
         this.uiForm.addEventListener("reset", (e) => {
             e.preventDefault();
             this.deleteProducts(this.uiName.value);
+            this.p4 = new Products("","",0);
+            this.uiName3.value = "";
+            this.uiDescription3.value = "";
+            this.uiQuantity3.value = "";
             this.clearForm();
         });
         this.uiForm3.addEventListener("submit", (e) => {
@@ -43,9 +47,6 @@ class Ui {
                 this.uiDescription3.value,
                 this.uiQuantity3.value);
             this.clearForm();
-            this.uiName3.value = "";
-            this.uiDescription3.value = ""
-            this.uiQuantity3.value = ""
         });
         this.uiForm2.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -57,11 +58,6 @@ class Ui {
         this.uiName.value = "";
         this.uiDescription.value = ""
         this.uiQuantity.value = ""
-    }
-    autoform() {
-        this.uiName3.value = this.uiName.value;
-        this.uiDescription3.value = this.uiDescription.value;
-        this.uiQuantity3.value = this.uiQuantity.value;
     }
     loadTable() {
         var html = "";
@@ -91,11 +87,7 @@ class Ui {
     }
     searchProduct(nomb){
         for (var i = 0; i < this.manager.showProducts().length; i++) {
-            /*console.log(this.manager.showProducts()[i].name + " " +
-                this.manager.showProducts()[i].description + " " +
-                this.manager.showProducts()[i].quantity)*/
-            if(this.manager.showProducts()[i].name == nomb){
-                //this.autoform();
+            if(this.manager.showProducts()[i].description == nomb){
                 this.p4 = this.manager.showProducts()[i];
                 this.uiName.value = this.manager.showProducts()[i].name;
                 this.uiDescription.value = this.manager.showProducts()[i].description;
@@ -103,13 +95,9 @@ class Ui {
                 this.uiName3.value = this.manager.showProducts()[i].name;
                 this.uiDescription3.value = this.manager.showProducts()[i].description;
                 this.uiQuantity3.value = this.manager.showProducts()[i].quantity;
-                //console.log("___" + this.p4.name + " " + this.p4.description + " " + this.p4.quantity);
                 return;
             }
         }
-        /*this.uiName.value = "---#$  no hay  $#---";
-        this.uiDescription.value = "";
-        this.uiQuantity.value = "";*/
     }
 }
 let ui = new Ui();
