@@ -27,9 +27,9 @@ class ProductsManagement {
     }
     updateProducts(product, nomb, desc, quan) {
         for (var i = 0; i < this.listproducts.length; i++) {
-            console.log(this.listproducts[i].name + " " +
+            /*console.log(this.listproducts[i].name + " " +
                 this.listproducts[i].description + " " +
-                this.listproducts[i].quantity)
+                this.listproducts[i].quantity)*/
             if (this.listproducts[i] == product) {
                 this.listproducts[i].name = nomb;
                 this.listproducts[i].description = desc;

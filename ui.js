@@ -7,6 +7,10 @@ class Ui {
         this.uiForm = document.getElementById("form-data");
         this.uiForm2 = document.getElementById("form-data-2");
         this.uiName2 = document.getElementById("name2");
+        this.uiForm3 = document.getElementById("form-data-3");
+        this.uiName3 = document.getElementById("name3");
+        this.uiDescription3 = document.getElementById("description3");
+        this.uiQuantity3 = document.getElementById("quantity3");
         this.container = document.getElementById("container-table");
         this.manager =  new ProductsManagement();
         let p1 = new Products("Pollo", "Pollo Sofia", 20);
@@ -27,18 +31,21 @@ class Ui {
                 this.uiQuantity.value);
             this.clearForm();
         });
-        /*this.uiForm.addEventListener("reset", (e) => {
+        this.uiForm.addEventListener("reset", (e) => {
             e.preventDefault();
             this.deleteProducts(this.uiName.value);
             this.clearForm();
-        });*/
-        this.uiForm.addEventListener("reset", (e) => {
+        });
+        this.uiForm3.addEventListener("submit", (e) => {
             e.preventDefault();
             this.upProducts(
-                this.uiName.value,
-                this.uiDescription.value,
-                this.uiQuantity.value);
+                this.uiName3.value,
+                this.uiDescription3.value,
+                this.uiQuantity3.value);
             this.clearForm();
+            this.uiName3.value = "";
+            this.uiDescription3.value = ""
+            this.uiQuantity3.value = ""
         });
         this.uiForm2.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -47,9 +54,14 @@ class Ui {
         });
     }
     clearForm() {
-                this.uiName.value = "";
-                this.uiDescription.value = ""
-                this.uiQuantity.value = ""
+        this.uiName.value = "";
+        this.uiDescription.value = ""
+        this.uiQuantity.value = ""
+    }
+    autoform() {
+        this.uiName3.value = this.uiName.value;
+        this.uiDescription3.value = this.uiDescription.value;
+        this.uiQuantity3.value = this.uiQuantity.value;
     }
     loadTable() {
         var html = "";
@@ -83,10 +95,14 @@ class Ui {
                 this.manager.showProducts()[i].description + " " +
                 this.manager.showProducts()[i].quantity)*/
             if(this.manager.showProducts()[i].name == nomb){
+                //this.autoform();
                 this.p4 = this.manager.showProducts()[i];
                 this.uiName.value = this.manager.showProducts()[i].name;
                 this.uiDescription.value = this.manager.showProducts()[i].description;
                 this.uiQuantity.value = this.manager.showProducts()[i].quantity;
+                this.uiName3.value = this.manager.showProducts()[i].name;
+                this.uiDescription3.value = this.manager.showProducts()[i].description;
+                this.uiQuantity3.value = this.manager.showProducts()[i].quantity;
                 //console.log("___" + this.p4.name + " " + this.p4.description + " " + this.p4.quantity);
                 return;
             }
