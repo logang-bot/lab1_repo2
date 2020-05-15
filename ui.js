@@ -5,11 +5,13 @@ class Ui {
         this.uiDescription = document.getElementById("description");
         this.uiQuantity = document.getElementById("quantity");
         this.uiForm = document.getElementById("form-data");
+        this.uiForm2 = document.getElementById("form-data-2");
+        this.uiName2 = document.getElementById("name2");
         this.container = document.getElementById("container-table");
         this.manager =  new ProductsManagement();
         let p1 = new Products("Pollo", "Pollo Sofia", 20);
-        let p2 = new Products("Galletas", "Galleras Mabel", 50);
-        let p3 = new Products("Pollo", "Pollo Imba", 50);
+        let p2 = new Products("Galletas", "Galletas Mabel", 50);
+        let p3 = new Products("Pollo2", "Pollo Imba", 50);
         this.manager.addProducts(p1);
         this.manager.addProducts(p2);
         this.manager.addProducts(p3);
@@ -23,6 +25,11 @@ class Ui {
                 this.uiDescription.value,
                 this.uiQuantity.value);
             this.clearForm();
+        });
+        this.uiForm2.addEventListener("submit", (e) => {
+            e.preventDefault();
+            this.searchProduct(this.uiName2.value);
+            this.uiName2.value = "";
         });
     }
     clearForm() {
@@ -47,7 +54,23 @@ class Ui {
         let p1 = new Products(name, description, quantity);
         this.manager.addProducts(p1);
         this.loadTable();
+    }
 
+    searchProduct(nomb){
+        for (var i = 0; i < this.manager.showProducts().length; i++) {
+            console.log(this.manager.showProducts()[i].name + " " +
+                this.manager.showProducts()[i].description + " " +
+                this.manager.showProducts()[i].quantity)
+            if(this.manager.showProducts()[i].name == nomb){
+                this.uiName.value = this.manager.showProducts()[i].name;
+                this.uiDescription.value = this.manager.showProducts()[i].description;
+                this.uiQuantity.value = this.manager.showProducts()[i].quantity;
+                return;
+            }
+        }
+        this.uiName.value = "no hay";
+        this.uiDescription.value = "";
+        this.uiQuantity.value = "";
     }
 }
 let ui = new Ui();

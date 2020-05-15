@@ -35,5 +35,12 @@ class ProductsManagement {
     showFirstProducts () {
         return this.listproducts[0];
     }
+    findProducts(nomb){
+        for (var i = 0; i < this.listproducts.length; i++) {
+            if (this.listproducts[i].name == nomb) {
+                return this.listproducts[i];
+            }
+        }
+    }
 }
 export {Products, ProductsManagement}
