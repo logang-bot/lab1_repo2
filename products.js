@@ -14,17 +14,26 @@ class ProductsManagement {
     }
     removeProducts(product) {
         for (var i = 0; i < this.listproducts.length; i++) {
-            if (this.listproducts[i] == product) {
+            //console.log(this.listproducts[i].name + " " +
+                //this.listproducts[i].description + " " +
+                //this.listproducts[i].quantity)
+            if (this.listproducts[i].name == product) {
+                //console.log("fsd");
                 this.listproducts.splice(i, 1);
                 return;
             }
         }
         return;
     }
-    updateProducts(product, newproduct) {
+    updateProducts(product, nomb, desc, quan) {
         for (var i = 0; i < this.listproducts.length; i++) {
+            console.log(this.listproducts[i].name + " " +
+                this.listproducts[i].description + " " +
+                this.listproducts[i].quantity)
             if (this.listproducts[i] == product) {
-                this.listproducts[i] = newproduct;
+                this.listproducts[i].name = nomb;
+                this.listproducts[i].description = desc;
+                this.listproducts[i].quantity = quan;
                 return;
             }
         }
@@ -35,9 +44,9 @@ class ProductsManagement {
     showFirstProducts () {
         return this.listproducts[0];
     }
-    findProducts(nomb){
+    findProducts(nomb, desc, quan){
         for (var i = 0; i < this.listproducts.length; i++) {
-            if (this.listproducts[i].name == nomb) {
+            if (this.listproducts[i].name == nomb && this.listproducts[i].description == desc && this.listproducts[i].name == quan) {
                 return this.listproducts[i];
             }
         }
